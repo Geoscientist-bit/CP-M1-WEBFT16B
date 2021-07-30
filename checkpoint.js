@@ -39,7 +39,20 @@ const {
 
 var isAncestor = function(genealogyTree, ancestor, descendant){
   // Tu código aca:
-
+  if(genealogyTree[ancestor].length <= 0) return false;
+  // if(genealogyTree[ancestor] === genealogyTree[descendant]) return true;
+  for(let i = 0; i < genealogyTree[ancestor].length; i++){
+    var aux = genealogyTree[ancestor][i]  // aux = patty bouvier
+    if(aux === descendant) {
+      return true
+    } // patty bouvier === Marge Simpson 
+    while(genealogyTree[aux].length > 1){
+      return isAncestor(genealogyTree, aux, descendant)
+    }
+  
+  }
+  return false; 
+  
 }
 
 
@@ -77,6 +90,15 @@ var isAncestor = function(genealogyTree, ancestor, descendant){
 
 function secuenciaHenry(obj, n) {
   // Tu código aca:
+  if(n < 0) return null;
+  if(n === 0) return obj.first;
+  if(n === 1) return Object.keys(obj).length;
+
+  return secuenciaHenry(obj, n - 1) * secuenciaHenry(obj, n - 2) - secuenciaHenry(obj, n - 2);
+
+  
+
+
 
 }
 
